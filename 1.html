@@ -1,0 +1,68 @@
+<!---以下の入力フォームを作成しなさい
+
+名前: 数字や記号が含まれないこと
+
+年齢: 0～150までの整数であること
+
+パスワード: 8文字以上であり、大文字アルファベット、小文字アルファベットの２つを含むこと
+
+送信ボタン: ボタン押下時に上記３つの項目をチェックし、それぞれに対応したエラーメッセージをalertで出力すること。不正な値がなかった場合は「送信成功」とalertすること -->
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+    </head>
+    <body>
+        <div id="message">
+        </div>
+        <form>
+            <hr/>
+            <label>氏名：</label>
+            <input type="text" name="name"  id="inputName"  maxlength="100" value="" placeholder="氏名を入力してください">
+            <br/>
+            <label>年齢：</label>
+            <input type="number" name="age" id="inputAge" value="">
+            <br/>
+            <label>パスワード：</label>
+            <input type="text" name="Pass" id="inputPass" maxlength="100" value="" placeholder="パスワード">
+            <br/>
+            <input type="button" id="btnSubmit" value="送信する">
+            <hr/>
+        </form>
+        <script>
+            window.onload = function(){
+                /*各画面オブジェクト*/
+                const btnSubmit = document.getElementById('btnSubmit');
+                const inputName = document.getElementById('inputName');
+                const inputAge = document.getElementById('inputAge');
+                const inputPass = document.getElementById('inputPass');
+                const Namereg = /[^0-9_.-]+/;
+                const Passreg = /^(?=.*[A-Z])[a-zA-Z0-9.?/-]{8,}$/;
+                
+                btnSubmit.addEventListener('click', function(event) {
+                    let message = [];
+                    /*入力値チェック*/
+                    if(inputName.value ==""){
+                        message.push("氏名が未入力です。");
+                    }else if(!Namereg.test(inputName.value)){
+                        message.push("使用できない文字が入っています。")
+                    }
+                    if(inputAge.value==""){
+                        message.push("年齢が未入力です。");
+                    }else if(AND())
+                        message.push("年齢の形式が不正です。")
+                    }
+                    if(inputPass.value==""){
+                        message.push("パスワードが未入力です。");
+                    }else if(!Passreg.test(inputPass.value)){
+                        message.push("パスワードの形式が不正です。");
+                    }
+                    if(message.length > 0){
+                        alert(message);
+                        return;
+                    }
+                    alert('送信成功');
+                });
+            };
+        </script>
+    </body>
+</html>
